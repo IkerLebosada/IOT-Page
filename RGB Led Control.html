@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="onsenui/css/onsen-css-components.min.css">
+  <link rel="stylesheet" href="main.css">
+  <script src="onsenui/js/onsenui.min.js"></script>
+</head>
+<body>
+  
+
+<ons-splitter var="mySplitter" ng-controller="SplitterController as splitter">
+  <ons-splitter-side side="left" width="220px" collapse swipeable>
+    <ons-page>
+      <ons-list>
+
+      	 <a href="index.html">
+        <ons-list-item ng-mousedown="splitter.load('home1.html')" tappable>
+          Home
+        </ons-list-item>
+        </a>
+
+         <a href="RGB Led Control.html">
+        <ons-list-item ng-click="splitter.load('settings.html')" tappable>
+          RGB Led Controler
+        </ons-list-item>
+        </a>
+
+         <ons-list-item ng-click="splitter.load('ledcontrol.html')" tappable>
+          Led Conrol
+        </ons-list-item>
+
+        <a href="http://home.cloud.acer.com/cpf-edu/tw/view/about.php?lan=en">
+        <ons-list-item ng-click="splitter.load('about.html')" tappable>
+          About
+        </ons-list-item>
+       </a>
+
+      </ons-list>
+    </ons-page>
+  </ons-splitter-side>
+  <ons-splitter-content page="home.html"></ons-splitter-content>
+</ons-splitter>
+
+
+<template id="home.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left">
+        <ons-toolbar-button ng-click="mySplitter.left.open()">
+          <ons-icon icon="md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+      <div class="center">
+        IOT Lab  Activity
+      </div>
+    </ons-toolbar>
+   
+
+<font id="title">RGB Led Control</font><p><br>
+
+<div id="content" class="row">
+	<div class="col-sm-12  col-xs-12">
+		<div id="analog" class="col-sm-6 col-xs-12">
+			
+			<table style="margin: 0 auto; margin-top: 10px;">
+				<tr style="text-align: center;">
+					<td><font color="red"><b>Red</b></font></td>
+					<td><font color="green"><b>green</b></font></td>
+					<td><font color="blue"><b>blue</b></font></td>
+				</tr>
+				<tr style="text-align: center;">
+					<td id="redvalue">0</td>
+					<td id="greenvalue">0</td>
+					<td id="bluevalue">0</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><input Onchange="changeColor();" type="range" id="rled" class="ledbar" value="0" min="0" max="255"></td>
+					<td><input Onchange="changeColor();" type="range" id="gled" class="ledbar" value="0" min="0" max="255"></td>
+					<td><input Onchange="changeColor();" type="range" id="bled" class="ledbar" value="0" min="0" max="255"></td>
+				</tr>
+			
+			</table>
+			<span id="showcolor"></span>
+
+			</table>
+		</div>
+	</div>
+</div>
+
+<script>
+	// RGB
+	function changeColor() {
+		var Rled = document.getElementById("rled").value;
+		var Gled = document.getElementById("gled").value;
+		var Bled = document.getElementById("bled").value;
+		
+		
+		document.getElementById("redvalue").innerHTML = Rled;
+		document.getElementById("greenvalue").innerHTML = Gled;
+		document.getElementById("bluevalue").innerHTML = Bled;
+			
+		
+		document.getElementById("showcolor").style.backgroundColor = 'rgb(' + Rled + ',' + Gled + ',' + Bled + ')';
+		
+		if(cpf){
+			cpf.setChainableLed("0," + Rled + "," + Gled + "," + 	Bled + ";");
+		}
+		
+	}
+	
+	
+	// cpf setup	
+	function setup(){
+		if(cpf)
+			cpf.setPinMode('["resetPin"],["setPinMode", "text-alignalog", 0, "INPUT"],["setPinMode", "analog", 1,"INPUT"],["grove_newChainableLED", 7, 8, 1]'); 
+			//document.getElementById("demo").innerHTML += ret + "<br>";
+	}
+
+
+	
+	</script>
+  </ons-page>
+</template>
+</body>
+</html>
+
+
+
+
+
+

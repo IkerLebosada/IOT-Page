@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="onsenui/css/onsen-css-components.min.css">
+  <script src="onsenui/js/onsenui.min.js"></script>
+</head>
+<body>
+  
+
+<ons-splitter var="mySplitter" ng-controller="SplitterController as splitter">
+  <ons-splitter-side side="left" width="220px" collapse swipeable>
+    <ons-page>
+      <ons-list>
+
+        <a href="index.html">
+        <ons-list-item ng-mousedown="splitter.load('home1.html')" tappable>
+          Home
+        </ons-list-item>
+        </a>
+
+        <a href="RGB Led Control.html">
+        <ons-list-item ng-mousedown="splitter.load('settings.html')" tappable>
+          RGB Led Controler
+        </ons-list-item>
+        </a>
+
+         <ons-list-item ng-click="splitter.load('ledcontrol.html')" tappable>
+          Led Conrol
+        </ons-list-item>
+
+        
+        <ons-list-item ng-click="splitter.load('about.html')" tappable>
+          About
+        </ons-list-item>
+
+        
+      </ons-list>
+    </ons-page>
+  </ons-splitter-side>
+  <ons-splitter-content page="home.html"></ons-splitter-content>
+</ons-splitter>
+
+
+<template id="home.html">
+  <ons-page>
+    <ons-toolbar>
+
+      <div class="left">
+        <ons-toolbar-button ng-click="mySplitter.left.open()">
+          <ons-icon icon="md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+
+      <div class="center">
+        IOT Lab  Activities
+      </div>
+    </ons-toolbar>
+    
+
+
+  
+  </ons-page>
+</template>
+</body>
+</html>
